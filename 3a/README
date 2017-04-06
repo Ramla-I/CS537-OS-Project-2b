@@ -1,0 +1,28 @@
+Environment variable was set up by using the export command and making LD_LIBRARY_PATH equal to our current directory
+
+Mem_Init:
+- First checked if size was a multiple of pages and changed value if it wasn't so
+- Used mmap to get free memory
+- Set freeList pointing to beginning of this allocated space. Set Size and next.
+
+Mem_Alloc:
+- Made sure size was a multiple of 8 bytes
+- found region according to method specified and stored in a pointer 'ptr'. The region before it was store in pointer 'previous'.
+- allocated region and filled in header
+- created a list_t pointer for remaining part of that free space and update its size and next.
+- set previous->next to remaining free space
+
+Mem_Free:
+- Found region that comes right before and right after newly freed space
+- checked if this newly freed space came between two regions in the freeList or at the end or at the beginning or was the only entry in the freeList
+- checked for coalescing and upated size and next variables of free regions
+
+
+Mem_Dump:
+-looped through free list and printed out address, size and next region
+
+Division of Work
+196: Mem_init, Mem_Alloc, Mem_Free, Mem_Dump
+197: Mem_init, Mem_Alloc, Mem_Dump
+
+
